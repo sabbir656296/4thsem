@@ -1,0 +1,882 @@
+/* ==========================================================================
+   1. বেসিক এবং টাইপোগ্রাফি স্টাইল
+   ========================================================================== */
+
+/* --- গ্লোবাল বক্স-সাইজিং --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* --- Body স্টাইল --- */
+body {
+    font-family: 'Hind Siliguri', sans-serif;
+    color: #3f3f46; /* মূল লেখার রঙ */
+    background: linear-gradient(135deg, #d3dae6 0%, #a5b1c9 100%);
+    background-attachment: fixed; /* স্ক্রল করার সময় ব্যাকগ্রাউন্ড স্থির থাকবে */
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* --- টেক্সট কন্টেন্টের জন্য সাধারণ স্টাইল --- */
+.prose {
+    font-family: 'Hind Siliguri', serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+    font-family: 'Baloo Da 2', 'Hind Siliguri', sans-serif;
+    text-align: left;
+    color: #1f2937;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+}
+
+.prose h1 {
+    font-size: 2em;
+    font-weight: 700;
+    padding-bottom: 0.3em;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.prose h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.prose h3 {
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.prose p {
+    text-align: justify;
+    font-size: 1.1em;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.quote-text {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(82, 82, 91, 0.6);
+    text-align: center;
+    line-height: 1.8;
+    transition: color 0.4s ease;
+}
+
+
+/* ==========================================================================
+   2. মূল কম্পোনেন্ট স্টাইল (গ্লাসমরফিজম)
+   ========================================================================== */
+
+/* --- কার্ড (গ্লাসমরফিজম ইফেক্ট) --- */
+.card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-radius: 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                background 0.4s ease,
+                border-color 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+/* --- স্টিকি নেভিগেশন বার --- */
+#subject-nav {
+    position: sticky;
+    top: 0.5rem;
+    z-index: 50;
+    width: fit-content;
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    background: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    transition: all 0.4s ease-in-out;
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* স্ক্রল করার পর নেভিগেশন বারের স্টাইল */
+#subject-nav.nav-scrolled {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- নেভিগেশন বাটন --- */
+.nav-button {
+    color: #3f3f46;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    color: #18181b;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(31, 38, 135, 0.15);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
+}
+
+/* --- ফিল্টার বাটন --- */
+/* --- কাস্টম ফর্ম ইনপুট (যেমন: select) --- */
+.form-input-glass {
+    
+    /* ফিল্টার বাটনের সাথে মিল রেখে স্টাইল */
+    transition: all 0.3s ease;
+    border: 1px solid rgba(212, 212, 216, 0.8);
+    color: #52525b;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: 500; /* Medium font weight */
+}
+
+.form-input-glass:focus {
+    border-color: #a1a1aa;
+}
+
+/* --- ডার্ক মোড: কাস্টম ফর্ম ইনপুট --- */
+.dark .form-input-glass {
+    border-color: rgba(82, 82, 91, 0.8);
+    color: #d4d4d8;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .form-input-glass:focus {
+    border-color: #71717a;
+}
+/* --- <select> ড্রপডাউনের ভেতরের অপশন স্টাইল --- */
+.form-input-glass option {
+    background-color: #ffffff; 
+    color: #18181b;       
+}
+
+/* --- ডার্ক মোড: <select> ড্রপডাউনের ভেতরের অপশন --- */
+.dark .form-input-glass option {
+    background-color: #3f3f46; /* ডার্ক মোডে অপশনের ব্যাকগ্রাউন্ড (zinc-700) */
+    color: #f4f4f5;       /* ডার্ক মোডে অপশনের লেখার রঙ হালকা (zinc-100) */
+}
+
+/* --- ফিল্টার বাটন ও সিলেক্ট বক্সের জন্য নতুন গ্লাসি স্টাইল --- */
+.form-input-glass, .filter-button {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.15));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+/* হোভার এবং অ্যাক্টিভ অবস্থার জন্য স্টাইল */
+.filter-button:hover,
+.form-input-glass:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.filter-button.active {
+    background-color: #a1a1aa; /* আগের মতোই থাকবে */
+    color: white;
+    border-color: #a1a1aa;
+}
+
+/* --- অ্যাকর্ডিয়ন (প্রশ্ন-উত্তর) --- */
+.question-accordion-header {
+    width: 100%;
+    text-align: left;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    color: #3f3f46;
+    display: flex;
+    align-items: flex-start;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: transparent;
+}
+
+.question-accordion-header:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.question-accordion-header .transform_plus {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.question-accordion-header.active .transform_plus {
+    transform: rotate(45deg);
+}
+
+.question-accordion-header .transform_plus {
+    margin-left: auto;
+    padding-left: 1rem; 
+}
+.question-accordion-body {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    background-color: transparent;
+    color: #3f3f46;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.answer-content {
+    max-width: 80ch;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1.5rem;
+}
+/* অ্যাক্টিভ অ্যাকর্ডিয়ানের বডি ফন্ট পরিবর্তনের জন্য */
+.question-accordion-header.active + .question-accordion-body {
+    font-family: 'Hind Siliguri', sans-serif;
+}
+/* --- MCQ প্রশ্ন --- */
+.mcq-question-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #27272a;
+}
+
+.mcq-option {
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #3f3f46;
+    transition: all 0.3s ease;
+}
+
+.mcq-option:hover {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.02);
+}
+
+.mcq-option.correct {
+    background-color: rgba(236, 253, 245, 0.8);
+    border-color: #10b981;
+    color: #059669;
+}
+
+.mcq-option.incorrect {
+    background-color: rgba(254, 242, 242, 0.8);
+    border-color: #f87171;
+    color: #dc2626;
+}
+
+/* --- চার্ট --- */
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+}
+
+@media (min-width: 768px) {
+    .chart-container {
+        height: 400px;
+    }
+}
+
+
+/* ==========================================================================
+   3. অ্যানিমেশন
+   ========================================================================== */
+
+.fade-in {
+    animation: fadeIn 0.7s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ==========================================================================
+   4. ডার্ক মোড স্টাইল
+   ========================================================================== */
+
+body.dark {
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+    color: #e4e4e7;
+}
+
+/* --- ডার্ক মোড: টাইপোগ্রাফি --- */
+.dark .prose, .dark .prose p, .dark #intro-section p {
+    color: #d1d5db;
+}
+
+.dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose h4,
+.dark header h1, .dark .prose strong, .dark #intro-section h2, .dark #chart-section h3 {
+    color: #f3f4f6;
+}
+
+.dark .prose h1 {
+    border-bottom-color: #4b5563;
+}
+
+.dark .quote-text {
+    color: rgba(161, 161, 170, 0.7);
+}
+
+/* --- ডার্ক মোড: কম্পোনেন্ট --- */
+.dark .card {
+    background: linear-gradient(145deg, rgba(55, 55, 60, 0.2), rgba(40, 40, 42, 0.15));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.dark .nav-button {
+    color: #d4d4d8;
+    background: linear-gradient(145deg, rgba(55, 55, 60, 0.35), rgba(40, 40, 42, 0.15));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.dark .nav-button:hover {
+    color: #ffffff;
+    background: linear-gradient(145deg, rgba(80, 80, 85, 0.6), rgba(50, 50, 52, 0.5));
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* এই স্টাইলগুলো !important সহ রাখা হয়েছে যেন ফাইনাল ডিজাইন ঠিক থাকে */
+.nav-button.active {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2)) !important;
+    backdrop-filter: blur(10px) !important;
+    color: #18181b !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.7) !important;
+}
+
+.dark .nav-button.active {
+    background: linear-gradient(145deg, rgba(230, 230, 230, 0.4), rgba(200, 200, 200, 0.2)) !important;
+    backdrop-filter: blur(12px) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+
+.dark .filter-button {
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.1)); /* ডার্ক ট্রান্সপারেন্ট */
+    backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e5e5e5; /* ডার্ক মোডে সাদা টেক্সট */
+}
+
+.dark .filter-button.active,
+.dark .filter-button:hover {
+    background-color: #71717a;
+    color: white;
+    border-color: #71717a;
+}
+
+.dark .mcq-question-title {
+    color: #f4f4f5;
+}
+
+.dark .mcq-option {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #d4d4d8;
+}
+
+.dark .mcq-option:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.dark .mcq-option.correct {
+    background-color: rgba(20, 83, 45, 0.7);
+    border-color: #4ade80;
+    color: #bbf7d0;
+}
+
+.dark .mcq-option.incorrect {
+    background-color: rgba(127, 29, 29, 0.7);
+    border-color: #f87171;
+    color: #fecaca;
+}
+
+.dark .question-accordion-header {
+    color: #f4f4f5;
+}
+
+.dark .question-accordion-header:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .question-accordion-body {
+    color: #d4d4d8;
+}
+
+/* ==========================================================================
+   5. টেবিল এবং ফ্লোচার্ট স্টাইল
+   ========================================================================== */
+
+.prose table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2em 0;
+    border-radius: 0.85rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+.prose th {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    font-weight: 700;
+    color: #0c4a6e;
+    background-color: rgba(59, 130, 246, 0.15);
+    border-bottom: 2px solid rgba(59, 130, 246, 0.8);
+    text-transform: uppercase;
+}
+
+.prose td {
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+    color: #374151;
+    border-bottom: 1px solid rgba(229, 231, 235, 0.7);
+}
+
+.prose tr:nth-of-type(even) {
+    background-color: rgba(243, 244, 246, 0.5);
+}
+
+.prose tr:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.prose tr:last-child td {
+    border-bottom: none;
+}
+/* টেবিলের জন্য রেসপন্সিভ র‍্যাপার */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* মোবাইলে স্মুথ স্ক্রলিংয়ের জন্য */
+}
+
+/* --- টেবিল (ডার্ক মোড) --- */
+.dark .prose table {
+    background: linear-gradient(135deg, rgba(50, 50, 55, 0.4), rgba(20, 20, 20, 0.3));
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dark .prose th {
+    color: #a5cfff;
+    background-color: rgba(96, 165, 250, 0.15);
+    border-bottom-color: rgba(96, 165, 250, 0.7);
+}
+
+.dark .prose td {
+    color: #d1d5db;
+    border-bottom-color: rgba(75, 85, 99, 0.7);
+}
+
+.dark .prose tr:nth-of-type(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.dark .prose tr:hover {
+    background-color: rgba(96, 165, 250, 0.1);
+}
+
+/* --- ফ্লোচার্ট --- */
+.flowchart {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 20px;
+     
+}
+
+
+.flowchart-node {
+    padding: 1.25rem 2rem;
+    border-radius: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    min-width: 150px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.25));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.75), 0 10px 25px rgba(31, 38, 135, 0.2);
+    transition: all 0.3s ease;
+}
+
+.flowchart-node:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.75), 0 12px 30px rgba(31, 38, 135, 0.25);
+}
+
+.flowchart-connector {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgba(63, 63, 70, 0.6);
+}
+
+/* --- ফ্লোচার্ট (ডার্ক মোড) --- */
+.dark .flowchart-node {
+    color: #f4f4f5;
+    background: linear-gradient(145deg, rgba(80, 80, 85, 0.5), rgba(40, 40, 42, 0.3));
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.1), 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.dark .flowchart-node:hover {
+    background: linear-gradient(145deg, rgba(90, 90, 95, 0.6), rgba(50, 50, 52, 0.4));
+    box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.1), 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.dark .flowchart-connector {
+    color: rgba(161, 161, 170, 0.7);
+}
+
+
+/* ==========================================================================
+   6. রেসপন্সিভ ডিজাইন (মোবাইল)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* স্ক্রল করার আগের অবস্থা */
+    #subject-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* স্ক্রল করার পরের অবস্থা */
+    #subject-nav.nav-scrolled {
+    /* --- নিচের ৩টি লাইন পরিবর্তন করা হয়েছে --- */
+    max-width: calc(100% - 0.2rem); /* স্ক্রিনের দুই পাশে 1rem করে ফাঁকা জায়গা রাখার জন্য */
+    margin: 0 auto;               /* বারটিকে মাঝখানে আনার জন্য */
+    border-radius: 9999px;        /* গোলাকার আকৃতি ফিরিয়ে আনার জন্য */
+
+    /* --- এই অংশগুলো আগের মতোই থাকবে --- */
+    padding: 0.5rem;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    
+    /* --- ব্যাকগ্রাউন্ড ও অন্যান্য স্টাইল অপরিবর্তিত থাকবে --- */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+    body.dark #subject-nav.nav-scrolled {
+        background: rgba(40, 40, 42, 0.15);
+        border-color: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* স্ক্রলবারে থাকা বাটনগুলোর জন্য মার্জিন */
+    #subject-nav.nav-scrolled .nav-button {
+        flex: 0 0 auto;
+        margin: 0 0.25rem;
+    }
+    #subject-nav.nav-scrolled .nav-button:first-child {
+        margin-left: 1rem;
+    }
+    #subject-nav.nav-scrolled .nav-button:last-child {
+        margin-right: 1rem;
+    }
+
+    /* স্ক্রলবার আড়াল করা */
+    #subject-nav::-webkit-scrollbar {
+        display: none;
+    }
+    #subject-nav {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+}
+/* --- ব্যাকগ্রাউন্ড ইলাস্ট্রেশন স্টাইল --- */
+.background-svg {
+    position: fixed;       /* স্ক্রল করলেও ব্যাকগ্রাউন্ড স্থির থাকবে */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* এটিকে পৃষ্ঠার ঠিক মাঝখানে আনে */
+    width: 80%; 
+    max-width: 900px;
+    animation: subtle-pulse 12s infinite ease-in-out;
+    z-index: -1;           /* (সবচেয়ে গুরুত্বপূর্ণ) এটিকে সব লেখার পেছনে পাঠিয়ে দেয় */
+    pointer-events: none;  /* এর উপর যেন ক্লিক না করা যায় */
+}
+/* --- ফুটারের জন্য গ্লাসি স্টাইল --- */
+footer {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-top: 2rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* ডার্ক মোডে ফুটারের জন্য */
+.dark footer {
+    background: linear-gradient(145deg, rgba(55, 55, 60, 0.2), rgba(40, 40, 42, 0.1));
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+/* ব্যাকগ্রাউন্ড ইলাস্ট্রেশনের জন্য ধীরগতির পালস অ্যানিমেশন */
+@keyframes subtle-pulse {
+  0% {
+    opacity: 0.08; /* আবছা অবস্থা থেকে শুরু */
+  }
+  50% {
+    opacity: 0.15; /* হালকা উজ্জ্বল হবে */
+  }
+  100% {
+    opacity: 0.08; /* আবার আবছা হয়ে যাবে */
+  }
+}
+/* ==========================================================================
+   7. SVG ব্যাকগ্রাউন্ড স্টাইল এবং অ্যানিমেশন (চূড়ান্ত ডাইনামিক সংস্করণ)
+   ========================================================================== */
+
+/* ধূসর বলের রঙের সমস্যা সমাধান (এটি আগের মতোই থাকবে) */
+.gray-ball {
+    fill: #a1a1aa; 
+    transition: fill 0.4s ease;
+}
+.dark .gray-ball {
+    fill: #52525b;
+}
+
+/* --- নতুন এবং চূড়ান্ত ডাইনামিক অ্যানিমেশন --- */
+
+/* ভাসমান ইফেক্ট (আরও বেশি দূরত্ব, ধীর গতি এবং ঘূর্ণন) */
+@keyframes float-final {
+  0%   { transform: translate(0px, 0px) rotate(0deg); }
+  25%  { transform: translate(20px, -40px) rotate(10deg); }
+  50%  { transform: translate(0px, -80px) rotate(0deg); }
+  75%  { transform: translate(-20px, -40px) rotate(-10deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+/* স্পন্দিত বা পালস ইফেক্ট (বড়-ছোট হওয়ার ইফেক্টসহ) */
+@keyframes pulse-final {
+  0%   { transform: scale(0.9); opacity: 0.6; }
+  50%  { transform: scale(1.1); opacity: 1.0; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+/* লাইনের জন্য ড্রিফট ইফেক্ট (বড় পরিসরে ধীরগতির নড়াচড়া) */
+@keyframes drift-final {
+    0%   { transform: translate(0, 0); }
+    50%  { transform: translate(15px, 20px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* বারের জন্য গ্রো ইফেক্ট (বাউন্সসহ) */
+@keyframes grow-bar-final {
+  0%   { transform: scaleY(0); }
+  80%  { transform: scaleY(1.05); } /* হালকা বাউন্স করার জন্য */
+  100% { transform: scaleY(1); }
+}
+
+
+/* --- নির্দিষ্ট অংশে নতুন অ্যানিমেশন প্রয়োগ --- */
+
+/* ভাসমান বল */
+#eabc0b76-6faa-4fa0-934c-daff28b491dd {
+  animation: float-final 25s infinite ease-in-out;
+}
+
+/* স্পন্দিত বল ১ */
+#a1f8771a-4bf9-4603-9747-6ae739e4ad47 {
+  animation: pulse-final 5s infinite ease-in-out;
+  animation-delay: 0.5s; 
+}
+
+/* স্পন্দিত বল ২ */
+#a7ca0488-8ee6-49e2-b245-2872b84c042e {
+  animation: pulse-final 5s infinite ease-in-out; 
+  animation-delay: 2s; 
+}
+
+/* লাইন */
+#connecting-line {
+    animation: drift-final 20s infinite ease-in-out;
+}
+
+/* বার চার্টের জন্য অ্যানিমেশন প্রয়োগ */
+#ae5c11dc-7e77-468a-a39f-cc8da6ee1565-112,
+#bc696f83-47b6-45c9-967f-bb64f1f3bee5-113,
+#b3465432-03e0-48eb-8016-b04aa244e72c-115,
+#ef6ae9ea-be37-4bc6-b1be-067860dc7e9d-119,
+#b32730d1-ac43-40b1-a176-73e18bf362e5-121 {
+  transform-origin: bottom;
+  animation-name: grow-bar-final;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); /* আরও স্মুথ বাউন্স */
+  animation-fill-mode: backwards; /* লোড হওয়ার আগে বার দেখা যাবে না */
+}
+
+/* প্রতিটি বারে আলাদা আলাদা ডিলে */
+#ef6ae9ea-be37-4bc6-b1be-067860dc7e9d-119 { animation-delay: 0.2s; }
+#ae5c11dc-7e77-468a-a39f-cc8da6ee1565-112 { animation-delay: 0.4s; }
+#bc696f83-47b6-45c9-967f-bb64f1f3bee5-113 { animation-delay: 0.6s; }
+#b32730d1-ac43-40b1-a176-73e18bf362e5-121 { animation-delay: 0.8s; }
+#b3465432-03e0-48eb-8016-b04aa244e72c-115 { animation-delay: 1.0s; }
+
+/* ==========================================================================
+   8. SVG বার চার্ট অ্যানিমেশন (নতুন হরিজন্টাল মুভমেন্ট)
+   ========================================================================== */
+
+/* বারগুলোকে হরিজন্টালি (পাশাপাশি) মুভ করার অ্যানিমেশন */
+@keyframes sway-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(15px); /* বারগুলো ডানে সরবে */
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* প্রতিটি বারে নতুন হরিজন্টাল অ্যানিমেশন প্রয়োগ */
+#ef6ae9ea-be37-4bc6-b1be-067860dc7e9d-119, /* ১ম বার */
+#ae5c11dc-7e77-468a-a39f-cc8da6ee1565-112, /* ২য় বার */
+#bc696f83-47b6-45c9-967f-bb64f1f3bee5-113, /* ৩য় বার */
+#b32730d1-ac43-40b1-a176-73e18bf362e5-121, /* ৪র্থ বার (নীল) */
+#b3465432-03e0-48eb-8016-b04aa244e72c-115 { /* ৫ম বার */
+  animation-name: sway-horizontal;
+  animation-duration: 8s; /* গতি ধীর করার জন্য সময় ৮ সেকেন্ড করা হয়েছে */
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/* অ্যানিমেশনে বৈচিত্র্য আনার জন্য প্রতিটি বারে আলাদা ডিলে */
+#ef6ae9ea-be37-4bc6-b1be-067860dc7e9d-119 { animation-delay: 0s; }
+#ae5c11dc-7e77-468a-a39f-cc8da6ee1565-112 { animation-delay: 0.3s; }
+#bc696f83-47b6-45c9-967f-bb64f1f3bee5-113 { animation-delay: 0.6s; }
+#b32730d1-ac43-40b1-a176-73e18bf362e5-121 { animation-delay: 0.9s; }
+#b3465432-03e0-48eb-8016-b04aa244e72c-115 { animation-delay: 1.2s; }
+
+/* ==========================================================================
+   9. মোবাইল ডিভাইসের জন্য ব্যাকগ্রাউন্ড SVG পজিশনিং (নতুন কোড)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .background-svg {
+        /* মূল পরিবর্তন: SVG-কে উপরের দিকে সরাতে 50% থেকে 25% করা হয়েছে */
+        top: 25%; 
+
+        /* মোবাইল স্ক্রিনে এটিকে পুরো প্রস্থ জুড়ে দেওয়া হলো */
+        width: 100%;
+
+        /* অ্যানিমেশনটি এখন হালকা বেশি দৃশ্যমান হবে */
+        opacity: 0.1; 
+    }
+}
+/* স্ক্রল-ট্রিগারড অ্যানিমেশনের জন্য স্টাইল */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* সব বাটনের জন্য ক্লিক ইফেক্ট */
+.nav-button, .filter-button {
+    transition: all 0.2s ease; /* আগের transition এর সাথে এটি যোগ বা পরিবর্তন করুন */
+}
+
+.nav-button:active, .filter-button:active {
+    transform: translateY(0px) scale(0.95); /* :hover এর translateY তুলে দিয়ে শুধু scale দেওয়া হলো */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+#syllabus-section {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1)); /* লাইট মোড গ্লাসমর্ফিয়াম */
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    padding: 20px;
+    border-radius: 10px;
+    color: #333; /* লাইট মোডে কালো টেক্সট */
+    transition: all 0.4s ease; /* স্মুথ চেঞ্জ */
+}
+
+.dark #syllabus-section {
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.1)); /* ডার্ক মোড গ্লাসমর্ফিয়াম */
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    color: #e5e5e5; /* ডার্ক মোডে সাদা টেক্সট */
+}
+#syllabus-content {
+    color: inherit; /* প্যারেন্টের কালার নেবে */
+}
+
+.dark #syllabus-content {
+    color: #e5e5e5; /* ডার্ক মোডে সাদা */
+}
+.syllabus-subject-button {
+    font-weight: 600;       /* লেখাকে সেমি-বোল্ড করে */
+    font-size: 1.1rem;      /* ফন্টের আকার সামান্য বড় করে */
+    letter-spacing: 0.5px;  /* অক্ষরের মধ্যে সামান্য ফাঁকা জায়গা তৈরি করে */
+    width: 100%;            /* বাটনগুলোকে পুরো জায়গা জুড়ে দেখায় */
+    text-align: center;     /* লেখা মাঝখানে নিয়ে আসে */
+    border-radius: 0.75rem; /* বাটনগুলোকে আরেকটু বেশি গোলাকার করে */
+    margin-bottom: 8px;     /* বাটনগুলোর মধ্যে কিছুটা দূরত্ব তৈরি করে */
+}
+/* সিলেবাস টগল বাটনের জন্য নতুন স্টাইল */
+.syllabus-toggle-button {
+    border-radius: 9999px;      /* বাটনকে পুরোপুরি গোলাকার (pill-shaped) করে */
+    padding: 8px 20px;          /* বাটনের ভেতরের ফাঁকা জায়গা ঠিক করে */
+    font-weight: 600;           /* লেখাকে সেমি-বোল্ড করে */
+    margin-top: 1.5rem;         /* লেখা থেকে বাটনকে নিচে নামায় */
+    display: block;             /* বাটনকে ব্লক এলিমেন্ট বানায় */
+    margin-left: auto;          /* বাটনকে মাঝখানে আনে (ডান ও বামে অটো মার্জিন) */
+    margin-right: auto;
+    cursor: pointer;            /* মাউস নিলে পয়েন্টার দেখায় */
+}
+/* সিলেবাস টেবিল স্ক্রল ফিক্স */
+#syllabus-content .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
